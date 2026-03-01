@@ -16,7 +16,7 @@ const Header = () => {
             <Shield className="h-5 w-5 text-primary-foreground" />
           </div>
           <span className="font-display text-xl font-bold tracking-tight text-foreground">
-            Veritas AI
+            FactGuard
           </span>
         </div>
         <button
