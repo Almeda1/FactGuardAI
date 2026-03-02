@@ -6,7 +6,7 @@ export async function analyzeArticle(text: string): Promise<AnalysisResult> {
 
   // Use environment variable for API URL in production, fallback to local proxy for dev
   const API_URL = import.meta.env.VITE_API_URL 
-    ? `${import.meta.env.VITE_API_URL}/analyze` 
+    ? `${import.meta.env.VITE_API_URL}/api/analyze` 
     : "/api/analyze";
 
   let response: Response;
