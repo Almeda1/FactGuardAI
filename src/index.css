@@ -1,46 +1,45 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 220 20% 97%;
-    --foreground: 222 47% 11%;
+    /* Light Mode: Newspaper/Report Feel */
+    --background: 40 20% 98%; 
+    --foreground: 220 13% 18%; 
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card: 0 0% 100%; 
+    --card-foreground: 220 13% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 220 13% 18%;
 
-    --primary: 222 60% 18%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 220 40% 20%; 
+    --primary-foreground: 40 20% 98%;
 
-    --secondary: 215 25% 93%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 40 10% 94%; 
+    --secondary-foreground: 220 40% 20%;
 
-    --muted: 220 14% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 220 10% 94%;
+    --muted-foreground: 220 8% 40%;
 
-    --accent: 217 91% 60%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 38 90% 50%; 
+    --accent-foreground: 220 40% 10%;
 
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 70% 40%; 
+    --destructive-foreground: 0 0% 98%; 
 
-    --success: 142 71% 45%;
-    --success-foreground: 0 0% 100%;
+    --success: 150 40% 30%; 
+    --success-foreground: 0 0% 98%;
 
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 100%;
+    --warning: 35 80% 50%; 
+    --warning-foreground: 40 20% 10%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 222 60% 18%;
+    --border: 220 13% 85%;
+    --input: 220 13% 90%;
+    --ring: 220 40% 20%;
 
-    --radius: 0.75rem;
+    --radius: 0.125rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -51,43 +50,45 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
 
-    --font-display: 'Space Grotesk', sans-serif;
+    /* Updated font variables */
+    --font-heading: 'Merriweather', serif;
     --font-body: 'Inter', sans-serif;
   }
 
   .dark {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 96%;
+    /* Dark Mode: "Late Night Desk" Feel */
+    --background: 220 15% 10%; 
+    --foreground: 40 10% 90%; 
 
-    --card: 222 44% 10%;
-    --card-foreground: 210 40% 96%;
+    --card: 220 15% 13%; 
+    --card-foreground: 40 10% 90%;
 
-    --popover: 222 44% 10%;
-    --popover-foreground: 210 40% 96%;
+    --popover: 220 15% 13%;
+    --popover-foreground: 40 10% 90%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 222 47% 6%;
+    --primary: 40 10% 90%; 
+    --primary-foreground: 220 15% 10%;
 
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 96%;
+    --secondary: 220 15% 18%;
+    --secondary-foreground: 40 10% 90%;
 
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 220 15% 18%;
+    --muted-foreground: 220 10% 70%;
 
-    --accent: 217 91% 60%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 38 80% 60%; 
+    --accent-foreground: 220 40% 10%;
 
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 60% 50%;
+    --destructive-foreground: 0 0% 98%;
 
-    --success: 142 71% 45%;
-    --success-foreground: 0 0% 100%;
+    --success: 150 40% 40%;
+    --success-foreground: 0 0% 98%;
 
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 100%;
+    --warning: 35 80% 50%;
+    --warning-foreground: 40 20% 10%;
 
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
     --ring: 217 91% 60%;
 
     --sidebar-background: 240 5.9% 10%;
@@ -109,24 +110,49 @@
     @apply bg-background text-foreground font-body antialiased;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
+    @apply font-heading tracking-tight;
   }
 }
 
 @layer components {
+  /* Editorial Style Modifiers */
   .verdict-fake {
-    @apply bg-destructive/10 text-destructive border border-destructive/20;
+    /* Serious warning style */
+    @apply bg-destructive text-destructive-foreground border border-destructive shadow-sm;
   }
   .verdict-verified {
-    background: hsl(var(--success) / 0.1);
-    color: hsl(var(--success));
-    border: 1px solid hsl(var(--success) / 0.2);
+    /* Verified checkmark style */
+    @apply bg-success text-success-foreground border border-success shadow-sm;
+  }
+  .verdict-uncertain {
+    /* Warning/Caution style */
+    @apply bg-warning text-warning-foreground border border-warning shadow-sm;
+  }
+  
+  /* Textures / Effects */
+  .texture-paper {
+    background-image: 
+      linear-gradient(hsla(var(--border) / 0.5) 1px, transparent 1px),
+      linear-gradient(90deg, hsla(var(--border) / 0.5) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  .dark .texture-paper {
+    background-image: 
+      linear-gradient(hsla(var(--border) / 0.2) 1px, transparent 1px),
+      linear-gradient(90deg, hsla(var(--border) / 0.2) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .border-double-thick {
+    border-style: double;
+    border-width: 4px;
   }
 }
 
 @layer utilities {
-  .font-display {
-    font-family: var(--font-display);
+  .font-heading {
+    font-family: var(--font-heading);
   }
   .font-body {
     font-family: var(--font-body);

@@ -1,11 +1,21 @@
 interface ConfidenceGaugeProps {
   score: number;
+  verdict?: "fake" | "verified" | "uncertain";
 }
 
-const ConfidenceGauge = ({ score }: ConfidenceGaugeProps) => {
+function getGaugeColor(score: number, verdict?: string): string {
+  if (verdict === "verified") return "hsl(var(--success))";
+  if (verdict === "fake") return "hsl(var(--destructive))";
+  if (score >= 70) return "hsl(var(--success))";
+  if (score >= 40) return "hsl(var(--warning))";
+  return "hsl(var(--destructive))";
+}
+
+const ConfidenceGauge = ({ score, verdict }: ConfidenceGaugeProps) => {
   const radius = 45;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (score / 100) * circumference;
+  const color = getGaugeColor(score, verdict);
 
   return (
     <div className="flex flex-col items-center gap-3">
@@ -24,7 +34,7 @@ const ConfidenceGauge = ({ score }: ConfidenceGaugeProps) => {
             cy="50"
             r={radius}
             fill="none"
-            stroke="hsl(var(--accent))"
+            stroke={color}
             strokeWidth="8"
             strokeLinecap="round"
             strokeDasharray={circumference}

@@ -1,24 +1,37 @@
-import { AlertTriangle, CheckCircle2 } from "lucide-react";
+import { AlertTriangle, CheckCircle2, HelpCircle } from "lucide-react";
 
 interface VerdictBadgeProps {
-  verdict: "fake" | "verified";
+  verdict: "fake" | "verified" | "uncertain";
 }
 
+const verdictConfig = {
+  fake: {
+    className: "verdict-fake",
+    icon: AlertTriangle,
+    label: "Likely Fake",
+  },
+  verified: {
+    className: "verdict-verified",
+    icon: CheckCircle2,
+    label: "Verified",
+  },
+  uncertain: {
+    className: "verdict-uncertain",
+    icon: HelpCircle,
+    label: "Uncertain",
+  },
+};
+
 const VerdictBadge = ({ verdict }: VerdictBadgeProps) => {
-  const isFake = verdict === "fake";
+  const config = verdictConfig[verdict]; // No fallback needed as types are strict, but could add if needed
+  const Icon = config.icon;
 
   return (
     <div
-      className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold ${
-        isFake ? "verdict-fake" : "verdict-verified"
-      }`}
+      className={`inline-flex items-center gap-2 border-2 px-4 py-2 font-heading font-bold uppercase tracking-wider ${config.className}`}
     >
-      {isFake ? (
-        <AlertTriangle className="h-4 w-4" />
-      ) : (
-        <CheckCircle2 className="h-4 w-4" />
-      )}
-      {isFake ? "Likely Fake" : "Verified"}
+      <Icon className="h-5 w-5" />
+      {config.label}
     </div>
   );
 };
