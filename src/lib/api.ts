@@ -4,9 +4,14 @@ export async function analyzeArticle(text: string): Promise<AnalysisResult> {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 120_000); // 2 min timeout
 
+  // Use environment variable for API URL in production, fallback to local proxy for dev
+  const API_URL = import.meta.env.VITE_API_URL 
+    ? `${import.meta.env.VITE_API_URL}/analyze` 
+    : "/api/analyze";
+
   let response: Response;
   try {
-    response = await fetch("/api/analyze", {
+    response = await fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text }),

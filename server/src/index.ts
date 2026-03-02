@@ -6,7 +6,7 @@ import { analyzeArticle } from "./llm.js";
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors({ origin: ["http://localhost:8080", "http://localhost:5173"] }));
+app.use(cors({ origin: "*" })); // Allow all origins for simplicity in demo
 app.use(express.json({ limit: "100kb" }));
 
 app.post("/api/analyze", async (req, res) => {
