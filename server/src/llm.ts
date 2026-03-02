@@ -35,13 +35,13 @@ function getClient(): OpenAI {
 // Free models to try in order — falls back if one is rate-limited
 const FREE_MODELS = [
   "meta-llama/llama-3.3-70b-instruct:free",
-  "deepseek/deepseek-r1-0528:free",
   "google/gemma-3-27b-it:free",
   "mistralai/mistral-small-3.1-24b-instruct:free",
   "openai/gpt-oss-120b:free",
   "nvidia/nemotron-nano-9b-v2:free",
-  "qwen/qwen3-235b-a22b:free",
-  "microsoft/phi-4-reasoning-plus:free",
+  "deepseek/deepseek-chat-v3-0324:free",
+  "qwen/qwen-2.5-72b-instruct:free",
+  "nousresearch/hermes-3-llama-3.1-405b:free",
 ];
 
 const MAX_RETRIES = 2;
